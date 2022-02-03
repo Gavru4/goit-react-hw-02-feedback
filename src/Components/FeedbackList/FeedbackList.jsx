@@ -26,9 +26,12 @@ const FeedbackList = ({ onLeaveFeedback, options }) => {
 
 export default FeedbackList;
 
-// FeedbackList.propTypes = {
-//   options: PropTypes.arrayOf(
-//      id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//   )
-// };
+FeedbackList.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ),
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
