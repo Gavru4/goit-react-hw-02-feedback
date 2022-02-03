@@ -3,10 +3,7 @@
   margin: 100px auto 0;
   text-align: center;
 }
-.title {
-  margin-bottom: 10px;
-  font-size: 32px;
-}
+
 .wrapper {
   display: flex;
   flex-direction: column;

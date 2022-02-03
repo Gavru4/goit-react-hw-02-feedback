@@ -5,7 +5,6 @@ import s from "./Statistics.module.css";
 const Statistics = (props) => {
   return (
     <ul className={s.list}>
-      <h2 className={s.title}>Statistics</h2>
       {props.total > 0 ? (
         <StatisticsList props={props} />
       ) : (
@@ -22,7 +21,7 @@ Statistics.propTypes = {
     bad: PropTypes.number.isRequired,
     good: PropTypes.number.isRequired,
     neutral: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    positivePercentage: PropTypes.number.isRequired,
+    total: PropTypes.func.isRequired,
+    positivePercentage: PropTypes.func.isRequired,
   }),
 };

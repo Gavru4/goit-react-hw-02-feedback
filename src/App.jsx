@@ -1,7 +1,22 @@
 import "./App.css";
 import { Component } from "react";
 import FeedbackList from "./Components/FeedbackList/FeedbackList";
+import Section from "./Components/Section/Section";
 import Statistics from "./Components/Statistics/Statistics";
+const btnOptions = [
+  {
+    id: "good",
+    title: "Good",
+  },
+  {
+    id: "neutral",
+    title: "Neutral",
+  },
+  {
+    id: "bad",
+    title: "Bad",
+  },
+];
 
 class App extends Component {
   state = {
@@ -10,14 +25,8 @@ class App extends Component {
     bad: 0,
   };
 
-  onCliskGood = () => {
-    this.setState((prevState) => ({ good: prevState.good + 1 }));
-  };
-  onCliskBad = () => {
-    this.setState((prevState) => ({ bad: prevState.bad + 1 }));
-  };
-  onCliskNeutral = () => {
-    this.setState((prevState) => ({ neutral: prevState.neutral + 1 }));
+  onLeaveFeedback = (name) => {
+    this.setState((prevState) => ({ [name]: prevState[name] + 1 }));
   };
 
   countTotalFeedback = () => {
@@ -33,18 +42,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FeedbackList
-          good={this.onCliskGood}
-          bad={this.onCliskBad}
-          neutral={this.onCliskNeutral}
-        />
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback()}
-          positivePercentage={this.countPositiveFeedbackPercentage()}
-        />
+        <Section title={"Pleas leave feedback "}>
+          <FeedbackList
+            onLeaveFeedback={this.onLeaveFeedback}
+            options={btnOptions}
+          />
+        </Section>
+
+        <Section title={"Statistics"}>
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
       </div>
     );
   }
